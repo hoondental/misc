@@ -45,13 +45,15 @@ def download_youtube_audio(id, start_sec=0, end_sec=None, dir_save='./',
         else:            
             os.chdir(cwd)
             try:
-                filename = f'{prefix}.{id}.{suffix}'
+                if prefix is not None and len(prefix) > 0:
+                    filename = f'{prefix}.{id}.{suffix}'
+                else:
+                    filename = f'{id}.{suffix}'
                 path = os.path.join(dir_save, filename)
                 audio_clip = AudioFileClip(temp_path)
                 if start_sec > 0 or end_sec is not None:
                     audio_clip = audio_clip.subclip(t_start=start_sec, t_end=end_sec)
                 if mono:
-                    print('save as mono')
                     audio_clip.write_audiofile(path, fps=fps, nbytes=nbytes, ffmpeg_params=['-ac', '1'])
                 else:
                     audio_clip.write_audiofile(path, fps=fps, nbytes=nbytes)
