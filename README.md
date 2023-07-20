@@ -1,7 +1,7 @@
 # misc
 collection of miscellaneous packages 
 
-## youtube_downloader
+## youtube_download
 download youtube and save segment of it
 
 if "Error: Unable to extract uploader id" occurs:
